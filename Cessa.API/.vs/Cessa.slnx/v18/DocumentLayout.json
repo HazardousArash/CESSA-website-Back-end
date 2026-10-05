@@ -1,0 +1,1242 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\C#\\Cessa\\Cessa\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\cessa.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:cessa.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\auth\\refreshtokencommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\controllers\\areas\\student\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:controllers\\areas\\student\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17A116D-5DC4-5C44-F1E9-847074D2F47E}|..\\Cessa.Infrastructure\\Cessa.Infrastructure.csproj|d:\\projects\\c#\\cessa\\cessa.infrastructure\\services\\auth\\jwttokengenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\controllers\\areas\\contentcreator\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:controllers\\areas\\contentcreator\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\controllers\\apicontrollerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:controllers\\apicontrollerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\controllers\\areas\\admin\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:controllers\\areas\\admin\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2B486E7-F348-49D8-9F3A-0662BF8D083F}|..\\Cessa.Test\\Cessa.Test.csproj|d:\\projects\\c#\\cessa\\cessa.test\\cessa.test.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBBBC0B-81D0-0882-0618-F9611B63195B}|..\\Cessa.Persistence\\Cessa.Persistence.csproj|d:\\projects\\c#\\cessa\\cessa.persistence\\cessa.persistence.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17A116D-5DC4-5C44-F1E9-847074D2F47E}|..\\Cessa.Infrastructure\\Cessa.Infrastructure.csproj|d:\\projects\\c#\\cessa\\cessa.infrastructure\\cessa.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\cessa.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\cessa.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2B486E7-F348-49D8-9F3A-0662BF8D083F}|..\\Cessa.Test\\Cessa.Test.csproj|d:\\projects\\c#\\cessa\\cessa.test\\integration\\controllers\\comprehensiveapitests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CessaDb/True/SqlTable/dbo.AspNetUsers.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2B486E7-F348-49D8-9F3A-0662BF8D083F}|..\\Cessa.Test\\Cessa.Test.csproj|d:\\projects\\c#\\cessa\\cessa.test\\integration\\controllers\\exploreusersintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2B486E7-F348-49D8-9F3A-0662BF8D083F}|..\\Cessa.Test\\Cessa.Test.csproj|d:\\projects\\c#\\cessa\\cessa.test\\integration\\customwebapplicationfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\admin\\events\\admineventcommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\student\\enrollments\\eventenrollment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\behaviors\\validationbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\dependecyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\auth\\registercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2B486E7-F348-49D8-9F3A-0662BF8D083F}|..\\Cessa.Test\\Cessa.Test.csproj|d:\\projects\\c#\\cessa\\cessa.test\\domain\\baseentitytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2B486E7-F348-49D8-9F3A-0662BF8D083F}|..\\Cessa.Test\\Cessa.Test.csproj|d:\\projects\\c#\\cessa\\cessa.test\\application\\features\\posts\\updatepostcommandhandlertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2B486E7-F348-49D8-9F3A-0662BF8D083F}|..\\Cessa.Test\\Cessa.Test.csproj|d:\\projects\\c#\\cessa\\cessa.test\\application\\features\\admin\\addhalloffamemembervalidatortests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\controllers\\areas\\contentcreator\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:controllers\\areas\\contentcreator\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\controllers\\areas\\contentcreator\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:controllers\\areas\\contentcreator\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\contentcreator\\events\\creatoreventcommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\events\\eventqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\posts\\postcommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBBBC0B-81D0-0882-0618-F9611B63195B}|..\\Cessa.Persistence\\Cessa.Persistence.csproj|d:\\projects\\c#\\cessa\\cessa.persistence\\configurations\\eventenrollmentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBBBC0B-81D0-0882-0618-F9611B63195B}|..\\Cessa.Persistence\\Cessa.Persistence.csproj|d:\\projects\\c#\\cessa\\cessa.persistence\\configurations\\eventconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/./TymoDb/True/SqlTable/dbo.AspNetRoles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBBBC0B-81D0-0882-0618-F9611B63195B}|..\\Cessa.Persistence\\Cessa.Persistence.csproj|d:\\projects\\c#\\cessa\\cessa.persistence\\configurations\\postlikeconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBBBC0B-81D0-0882-0618-F9611B63195B}|..\\Cessa.Persistence\\Cessa.Persistence.csproj|d:\\projects\\c#\\cessa\\cessa.persistence\\configurations\\postcommentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBBBC0B-81D0-0882-0618-F9611B63195B}|..\\Cessa.Persistence\\Cessa.Persistence.csproj|d:\\projects\\c#\\cessa\\cessa.persistence\\configurations\\paymentrecordconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\posts\\postqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\auth\\logincommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\infrastructure\\globalexceptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:infrastructure\\globalexceptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\common\\exceptions\\validationexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBBBC0B-81D0-0882-0618-F9611B63195B}|..\\Cessa.Persistence\\Cessa.Persistence.csproj|d:\\projects\\c#\\cessa\\cessa.persistence\\contexts\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\common\\interfaces\\iapplicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBBBC0B-81D0-0882-0618-F9611B63195B}|..\\Cessa.Persistence\\Cessa.Persistence.csproj|d:\\projects\\c#\\cessa\\cessa.persistence\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\student\\profile\\updateprofilecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\admin\\users\\adminusercommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\common\\exceptions\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17A116D-5DC4-5C44-F1E9-847074D2F47E}|..\\Cessa.Infrastructure\\Cessa.Infrastructure.csproj|d:\\projects\\c#\\cessa\\cessa.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\entities\\auth\\applicationrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17A116D-5DC4-5C44-F1E9-847074D2F47E}|..\\Cessa.Infrastructure\\Cessa.Infrastructure.csproj|d:\\projects\\c#\\cessa\\cessa.infrastructure\\services\\messaging\\kavenegarsmsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\features\\admin\\halloffamemanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\common\\interfaces\\externalservicesinterfaces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBBBC0B-81D0-0882-0618-F9611B63195B}|..\\Cessa.Persistence\\Cessa.Persistence.csproj|d:\\projects\\c#\\cessa\\cessa.persistence\\configurations\\postconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\controllers\\areas\\student\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:controllers\\areas\\student\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\controllers\\areas\\admin\\logscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:controllers\\areas\\admin\\logscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\controllers\\areas\\admin\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:controllers\\areas\\admin\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\entities\\payment\\paymentrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\controllers\\areas\\student\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:controllers\\areas\\student\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\entities\\auth\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\controllers\\areas\\admin\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:controllers\\areas\\admin\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DBBBC0B-81D0-0882-0618-F9611B63195B}|..\\Cessa.Persistence\\Cessa.Persistence.csproj|d:\\projects\\c#\\cessa\\cessa.persistence\\interceptors\\auditableentitysavechangesinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{673DD45A-98AC-327F-FAAE-5F9B1069C904}|..\\Cessa.Application\\Cessa.Application.csproj|d:\\projects\\c#\\cessa\\cessa.application\\common\\interfaces\\ijwttokengenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\entities\\admin\\auditlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\entities\\content\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\entities\\admin\\halloffamemember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\entities\\content\\eventenrollment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\entities\\content\\postcomment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\entities\\content\\postlike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\entities\\content\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\entities\\auth\\otprecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2466ADE9-83F6-785A-C7D7-881E609D675E}|..\\Cessa.Domain\\Cessa.Domain.csproj|d:\\projects\\c#\\cessa\\cessa.domain\\common\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|d:\\projects\\c#\\cessa\\cessa\\sqlquery2.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|",
+      "RelativeMoniker": "D:0:0:{B8B5DF60-B31B-E9AB-E1DC-48206D696A72}|Cessa.Api.csproj|solutionrelative:sqlquery2.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 332,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RefreshTokenCommand.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Auth\\RefreshTokenCommand.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\Auth\\RefreshTokenCommand.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Auth\\RefreshTokenCommand.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\Auth\\RefreshTokenCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T21:57:21.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Admin\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Areas\\Admin\\AuthController.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Admin\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\Areas\\Admin\\AuthController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAYwCMAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:29:47.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApiControllerBase.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\ApiControllerBase.cs",
+              "RelativeDocumentMoniker": "Controllers\\ApiControllerBase.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\ApiControllerBase.cs",
+              "RelativeToolTip": "Controllers\\ApiControllerBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:27:02.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\ContentCreator\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Areas\\ContentCreator\\AuthController.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\ContentCreator\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\Areas\\ContentCreator\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:39:28.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Cessa.Api.csproj",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Cessa.Api.csproj",
+              "RelativeDocumentMoniker": "Cessa.Api.csproj",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Cessa.Api.csproj",
+              "RelativeToolTip": "Cessa.Api.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-12T16:39:38.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Infrastructure\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\DependencyInjection.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Infrastructure\\DependencyInjection.cs",
+              "RelativeToolTip": "Infrastructure\\DependencyInjection.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAwB4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:35:45.988Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "JwtTokenGenerator.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Infrastructure\\Services\\Auth\\JwtTokenGenerator.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Infrastructure\\Services\\Auth\\JwtTokenGenerator.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Infrastructure\\Services\\Auth\\JwtTokenGenerator.cs",
+              "RelativeToolTip": "..\\Cessa.Infrastructure\\Services\\Auth\\JwtTokenGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:12:47.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Student\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Areas\\Student\\AuthController.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Student\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\Areas\\Student\\AuthController.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAlwBMAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:39:38.985Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Cessa.Test.csproj",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Cessa.Test.csproj",
+              "RelativeDocumentMoniker": "..\\Cessa.Test\\Cessa.Test.csproj",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Cessa.Test.csproj",
+              "RelativeToolTip": "..\\Cessa.Test\\Cessa.Test.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-12T21:31:10.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Cessa.Application.csproj",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Cessa.Application.csproj",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Cessa.Application.csproj",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Cessa.Application.csproj",
+              "RelativeToolTip": "..\\Cessa.Application\\Cessa.Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-12T21:31:10.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Cessa.Domain.csproj",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Cessa.Domain.csproj",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Cessa.Domain.csproj",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Cessa.Domain.csproj",
+              "RelativeToolTip": "..\\Cessa.Domain\\Cessa.Domain.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-12T13:08:20.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Cessa.Infrastructure.csproj",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Infrastructure\\Cessa.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "..\\Cessa.Infrastructure\\Cessa.Infrastructure.csproj",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Infrastructure\\Cessa.Infrastructure.csproj",
+              "RelativeToolTip": "..\\Cessa.Infrastructure\\Cessa.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-12T21:31:10.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Cessa.Persistence.csproj",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Cessa.Persistence.csproj",
+              "RelativeDocumentMoniker": "..\\Cessa.Persistence\\Cessa.Persistence.csproj",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Cessa.Persistence.csproj",
+              "RelativeToolTip": "..\\Cessa.Persistence\\Cessa.Persistence.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-12T15:16:42.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ComprehensiveApiTests.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Integration\\Controllers\\ComprehensiveApiTests.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Test\\Integration\\Controllers\\ComprehensiveApiTests.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Integration\\Controllers\\ComprehensiveApiTests.cs",
+              "RelativeToolTip": "..\\Cessa.Test\\Integration\\Controllers\\ComprehensiveApiTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T21:18:49.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "dbo.AspNetUsers [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CessaDb/True/SqlTable/dbo.AspNetUsers.sql",
+              "ToolTip": "dbo.AspNetUsers [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-08-12T21:13:10.034Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ExploreUsersIntegrationTests.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Integration\\Controllers\\ExploreUsersIntegrationTests.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Test\\Integration\\Controllers\\ExploreUsersIntegrationTests.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Integration\\Controllers\\ExploreUsersIntegrationTests.cs",
+              "RelativeToolTip": "..\\Cessa.Test\\Integration\\Controllers\\ExploreUsersIntegrationTests.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAuwCMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T20:43:43.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CustomWebApplicationFactory.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Integration\\CustomWebApplicationFactory.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Test\\Integration\\CustomWebApplicationFactory.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Integration\\CustomWebApplicationFactory.cs",
+              "RelativeToolTip": "..\\Cessa.Test\\Integration\\CustomWebApplicationFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T20:42:21.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AdminEventCommands.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Admin\\Events\\AdminEventCommands.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\Admin\\Events\\AdminEventCommands.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Admin\\Events\\AdminEventCommands.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\Admin\\Events\\AdminEventCommands.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T16:51:33.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "EventEnrollment.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Student\\Enrollments\\EventEnrollment.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\Student\\Enrollments\\EventEnrollment.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Student\\Enrollments\\EventEnrollment.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\Student\\Enrollments\\EventEnrollment.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwCAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:02:52.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ValidationBehavior.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Behaviors\\ValidationBehavior.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Behaviors\\ValidationBehavior.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Behaviors\\ValidationBehavior.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Behaviors\\ValidationBehavior.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T14:54:53.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DependecyInjection.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\DependecyInjection.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\DependecyInjection.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\DependecyInjection.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\DependecyInjection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T17:14:58.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:25:33.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "RegisterCommand.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Auth\\RegisterCommand.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\Auth\\RegisterCommand.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Auth\\RegisterCommand.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\Auth\\RegisterCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:45:54.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "BaseEntityTests.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Domain\\BaseEntityTests.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Test\\Domain\\BaseEntityTests.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Domain\\BaseEntityTests.cs",
+              "RelativeToolTip": "..\\Cessa.Test\\Domain\\BaseEntityTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T20:44:17.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "UpdatePostCommandHandlerTests.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Application\\Features\\Posts\\UpdatePostCommandHandlerTests.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Test\\Application\\Features\\Posts\\UpdatePostCommandHandlerTests.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Application\\Features\\Posts\\UpdatePostCommandHandlerTests.cs",
+              "RelativeToolTip": "..\\Cessa.Test\\Application\\Features\\Posts\\UpdatePostCommandHandlerTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T20:40:15.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AddHallOfFameMemberValidatorTests.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Application\\Features\\Admin\\AddHallOfFameMemberValidatorTests.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Test\\Application\\Features\\Admin\\AddHallOfFameMemberValidatorTests.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Test\\Application\\Features\\Admin\\AddHallOfFameMemberValidatorTests.cs",
+              "RelativeToolTip": "..\\Cessa.Test\\Application\\Features\\Admin\\AddHallOfFameMemberValidatorTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T20:39:08.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "EventController.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\ContentCreator\\EventController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Areas\\ContentCreator\\EventController.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\ContentCreator\\EventController.cs",
+              "RelativeToolTip": "Controllers\\Areas\\ContentCreator\\EventController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAywBgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:39:31.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "PostController.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\ContentCreator\\PostController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Areas\\ContentCreator\\PostController.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\ContentCreator\\PostController.cs",
+              "RelativeToolTip": "Controllers\\Areas\\ContentCreator\\PostController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAywCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T20:36:47.155Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "CreatorEventCommands.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\ContentCreator\\Events\\CreatorEventCommands.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\ContentCreator\\Events\\CreatorEventCommands.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\ContentCreator\\Events\\CreatorEventCommands.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\ContentCreator\\Events\\CreatorEventCommands.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T20:36:19.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "EventQueries.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Events\\EventQueries.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\Events\\EventQueries.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Events\\EventQueries.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\Events\\EventQueries.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T20:33:58.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "PostCommands.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Posts\\PostCommands.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\Posts\\PostCommands.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Posts\\PostCommands.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\Posts\\PostCommands.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T20:33:27.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "SQLQuery2.sql",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\SQLQuery2.sql",
+              "RelativeDocumentMoniker": "SQLQuery2.sql",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\SQLQuery2.sql",
+              "RelativeToolTip": "SQLQuery2.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-08-12T21:31:10.567Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "EventEnrollmentConfiguration.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\EventEnrollmentConfiguration.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Persistence\\Configurations\\EventEnrollmentConfiguration.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\EventEnrollmentConfiguration.cs",
+              "RelativeToolTip": "..\\Cessa.Persistence\\Configurations\\EventEnrollmentConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T19:31:04.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "EventConfiguration.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\EventConfiguration.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Persistence\\Configurations\\EventConfiguration.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\EventConfiguration.cs",
+              "RelativeToolTip": "..\\Cessa.Persistence\\Configurations\\EventConfiguration.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAYwBYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T19:30:40.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "dbo.AspNetRoles.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/./TymoDb/True/SqlTable/dbo.AspNetRoles.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/./TymoDb/True/SqlTable/dbo.AspNetRoles.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-08-12T18:50:25.528Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-12T17:23:16.945Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "PostLikeConfiguration.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\PostLikeConfiguration.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Persistence\\Configurations\\PostLikeConfiguration.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\PostLikeConfiguration.cs",
+              "RelativeToolTip": "..\\Cessa.Persistence\\Configurations\\PostLikeConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T17:22:29.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-12T17:24:47.197Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-12T17:27:54.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "PostCommentConfiguration.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\PostCommentConfiguration.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Persistence\\Configurations\\PostCommentConfiguration.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\PostCommentConfiguration.cs",
+              "RelativeToolTip": "..\\Cessa.Persistence\\Configurations\\PostCommentConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T17:22:16.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "PaymentRecordConfiguration.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\PaymentRecordConfiguration.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Persistence\\Configurations\\PaymentRecordConfiguration.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\PaymentRecordConfiguration.cs",
+              "RelativeToolTip": "..\\Cessa.Persistence\\Configurations\\PaymentRecordConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T17:21:51.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "PostQueries.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Posts\\PostQueries.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\Posts\\PostQueries.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Posts\\PostQueries.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\Posts\\PostQueries.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAlwCgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T16:51:45.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "LoginCommands.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Auth\\LoginCommands.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\Auth\\LoginCommands.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Auth\\LoginCommands.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\Auth\\LoginCommands.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAlwBEAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T16:51:19.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "GlobalExceptionHandler.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Infrastructure\\GlobalExceptionHandler.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\GlobalExceptionHandler.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Infrastructure\\GlobalExceptionHandler.cs",
+              "RelativeToolTip": "Infrastructure\\GlobalExceptionHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:26:14.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "ValidationException.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Common\\Exceptions\\ValidationException.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Common\\Exceptions\\ValidationException.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Common\\Exceptions\\ValidationException.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Common\\Exceptions\\ValidationException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T14:53:38.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Contexts\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Persistence\\Contexts\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Contexts\\ApplicationDbContext.cs",
+              "RelativeToolTip": "..\\Cessa.Persistence\\Contexts\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:18:44.921Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "IApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Common\\Interfaces\\IApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Common\\Interfaces\\IApplicationDbContext.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Common\\Interfaces\\IApplicationDbContext.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Common\\Interfaces\\IApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T14:56:43.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Persistence\\DependencyInjection.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\DependencyInjection.cs",
+              "RelativeToolTip": "..\\Cessa.Persistence\\DependencyInjection.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAawA4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:20:59.35Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "UpdateProfileCommand.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Student\\Profile\\UpdateProfileCommand.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\Student\\Profile\\UpdateProfileCommand.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Student\\Profile\\UpdateProfileCommand.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\Student\\Profile\\UpdateProfileCommand.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAQwA8AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T16:11:51.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "AdminUserCommands.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Admin\\Users\\AdminUserCommands.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\Admin\\Users\\AdminUserCommands.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Admin\\Users\\AdminUserCommands.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\Admin\\Users\\AdminUserCommands.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAQwA8AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T16:10:50.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "NotFoundException.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Common\\Exceptions\\NotFoundException.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Common\\Exceptions\\NotFoundException.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Common\\Exceptions\\NotFoundException.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Common\\Exceptions\\NotFoundException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T14:54:03.779Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Infrastructure\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Infrastructure\\DependencyInjection.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Infrastructure\\DependencyInjection.cs",
+              "RelativeToolTip": "..\\Cessa.Infrastructure\\DependencyInjection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:13:47.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "ApplicationRole.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Auth\\ApplicationRole.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Entities\\Auth\\ApplicationRole.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Auth\\ApplicationRole.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Entities\\Auth\\ApplicationRole.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T13:12:13.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "KavenegarSmsService.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Infrastructure\\Services\\Messaging\\KavenegarSmsService.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Infrastructure\\Services\\Messaging\\KavenegarSmsService.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Infrastructure\\Services\\Messaging\\KavenegarSmsService.cs",
+              "RelativeToolTip": "..\\Cessa.Infrastructure\\Services\\Messaging\\KavenegarSmsService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAIA7wBMAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:07:59.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "HallOfFameManagement.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Admin\\HallOfFameManagement.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Features\\Admin\\HallOfFameManagement.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Features\\Admin\\HallOfFameManagement.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Features\\Admin\\HallOfFameManagement.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwBQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T14:59:18.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "ExternalServicesInterfaces.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Common\\Interfaces\\ExternalServicesInterfaces.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Common\\Interfaces\\ExternalServicesInterfaces.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Common\\Interfaces\\ExternalServicesInterfaces.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Common\\Interfaces\\ExternalServicesInterfaces.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:06:58.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "PostConfiguration.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\PostConfiguration.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Persistence\\Configurations\\PostConfiguration.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Configurations\\PostConfiguration.cs",
+              "RelativeToolTip": "..\\Cessa.Persistence\\Configurations\\PostConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:18:02.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "ProfileController.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Student\\ProfileController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Areas\\Student\\ProfileController.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Student\\ProfileController.cs",
+              "RelativeToolTip": "Controllers\\Areas\\Student\\ProfileController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAIwBcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T16:14:02.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "LogsController.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Admin\\LogsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Areas\\Admin\\LogsController.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Admin\\LogsController.cs",
+              "RelativeToolTip": "Controllers\\Areas\\Admin\\LogsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T16:13:34.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Admin\\UsersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Areas\\Admin\\UsersController.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Admin\\UsersController.cs",
+              "RelativeToolTip": "Controllers\\Areas\\Admin\\UsersController.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAIwCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T16:13:04.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "PaymentRecord.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Payment\\PaymentRecord.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Entities\\Payment\\PaymentRecord.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Payment\\PaymentRecord.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Entities\\Payment\\PaymentRecord.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:44:19.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "EventController.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Student\\EventController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Areas\\Student\\EventController.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Student\\EventController.cs",
+              "RelativeToolTip": "Controllers\\Areas\\Student\\EventController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:39:51.186Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Auth\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Entities\\Auth\\ApplicationUser.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Auth\\ApplicationUser.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Entities\\Auth\\ApplicationUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T13:10:31.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "EventController.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Admin\\EventController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Areas\\Admin\\EventController.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa\\Controllers\\Areas\\Admin\\EventController.cs",
+              "RelativeToolTip": "Controllers\\Areas\\Admin\\EventController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:38:05.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "AuditableEntitySaveChangesInterceptor.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Interceptors\\AuditableEntitySaveChangesInterceptor.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Persistence\\Interceptors\\AuditableEntitySaveChangesInterceptor.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Persistence\\Interceptors\\AuditableEntitySaveChangesInterceptor.cs",
+              "RelativeToolTip": "..\\Cessa.Persistence\\Interceptors\\AuditableEntitySaveChangesInterceptor.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAkwCwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T15:17:05.503Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "IJwtTokenGenerator.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Common\\Interfaces\\IJwtTokenGenerator.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Application\\Common\\Interfaces\\IJwtTokenGenerator.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Application\\Common\\Interfaces\\IJwtTokenGenerator.cs",
+              "RelativeToolTip": "..\\Cessa.Application\\Common\\Interfaces\\IJwtTokenGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T14:57:10.432Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "AuditLog.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Admin\\AuditLog.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Entities\\Admin\\AuditLog.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Admin\\AuditLog.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Entities\\Admin\\AuditLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T13:18:31.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "Event.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Content\\Event.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Entities\\Content\\Event.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Content\\Event.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Entities\\Content\\Event.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T13:15:41.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "HallOfFameMember.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Admin\\HallOfFameMember.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Entities\\Admin\\HallOfFameMember.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Admin\\HallOfFameMember.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Entities\\Admin\\HallOfFameMember.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T13:18:10.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "EventEnrollment.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Content\\EventEnrollment.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Entities\\Content\\EventEnrollment.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Content\\EventEnrollment.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Entities\\Content\\EventEnrollment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T13:17:17.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "PostComment.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Content\\PostComment.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Entities\\Content\\PostComment.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Content\\PostComment.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Entities\\Content\\PostComment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T13:17:01.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "PostLike.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Content\\PostLike.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Entities\\Content\\PostLike.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Content\\PostLike.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Entities\\Content\\PostLike.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T13:16:14.334Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "Post.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Content\\Post.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Entities\\Content\\Post.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Content\\Post.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Entities\\Content\\Post.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T13:13:30.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "OtpRecord.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Auth\\OtpRecord.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Entities\\Auth\\OtpRecord.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Entities\\Auth\\OtpRecord.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Entities\\Auth\\OtpRecord.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T13:12:34.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Common\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "..\\Cessa.Domain\\Common\\BaseEntity.cs",
+              "ToolTip": "D:\\Projects\\C#\\Cessa\\Cessa.Domain\\Common\\BaseEntity.cs",
+              "RelativeToolTip": "..\\Cessa.Domain\\Common\\BaseEntity.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAgwBEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-12T13:09:49.088Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

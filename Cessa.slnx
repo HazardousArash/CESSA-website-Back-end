@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="Cessa.API/Cessa.API.csproj" />
+  <Project Path="Cessa.Application/Cessa.Application.csproj" />
+  <Project Path="Cessa.Domain/Cessa.Domain.csproj" />
+  <Project Path="Cessa.Infrastructure/Cessa.Infrastructure.csproj" />
+  <Project Path="Cessa.IntegrationTests/Cessa.IntegrationTests.csproj" Id="fc4711f9-9354-4a60-a61c-eda308150551" />
+  <Project Path="Cessa.Persistence/Cessa.Persistence.csproj" />
+</Solution>

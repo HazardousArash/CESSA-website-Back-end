@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- FIX: Removed Legacy 'Microsoft.AspNet.Identity.EntityFramework' -->
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="10.0.11" />
+  </ItemGroup>
+
+</Project>

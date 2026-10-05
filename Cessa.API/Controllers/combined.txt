@@ -1,0 +1,1347 @@
+// --- Source: ApiControllerBase.cs ---
+namespace Cessa.Api.Controllers
+{
+    using MediatR;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.DependencyInjection;
+    using System;
+
+    [ApiController]
+    public abstract class ApiControllerBase : ControllerBase
+    {
+        private ISender? _mediator;
+        protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
+
+        protected void SetTokenCookies(string accessToken, string refreshToken)
+        {
+            var isHttps = Request.IsHttps;
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = isHttps, // Only true if running on HTTPS
+                SameSite = isHttps ? SameSiteMode.None : SameSiteMode.Lax, // Lax for local HTTP
+                Expires = DateTime.UtcNow.AddMinutes(15)
+            };
+
+            Response.Cookies.Append("jwt", accessToken, cookieOptions);
+
+            var refreshOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = isHttps,
+                SameSite = isHttps ? SameSiteMode.None : SameSiteMode.Lax,
+                Expires = DateTime.UtcNow.AddDays(7)
+            };
+
+            Response.Cookies.Append("refreshToken", refreshToken, refreshOptions);
+        }
+
+        protected void ClearTokenCookies()
+        {
+            var isHttps = Request.IsHttps;
+            var deleteOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = isHttps,
+                SameSite = isHttps ? SameSiteMode.None : SameSiteMode.Lax
+            };
+
+            Response.Cookies.Delete("jwt", deleteOptions);
+            Response.Cookies.Delete("refreshToken", deleteOptions);
+        }
+    }
+}
+
+// --- Source: Areas\Admin\AdvertisementController.cs ---
+﻿namespace Cessa.Api.Controllers.Areas.Admin
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Advertisements;
+    using Cessa.Api.Helpers;
+    using System;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Admin")]
+    [Route("api/admin/[controller]")]
+    [ApiExplorerSettings(GroupName = "admin")]
+    public class AdvertisementsController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetAll() => Ok(ApiResult.Success(await Mediator.Send(new GetAllAdsQuery()), "Ads retrieved."));
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateAdCommand command) => StatusCode(201, ApiResult.Created(await Mediator.Send(command), "Ad created."));
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateAdCommand command)
+        {
+            if (id != command.Id) return BadRequest(ApiResult.BadRequest("ID mismatch."));
+            await Mediator.Send(command); return Ok(ApiResult.Success("Ad updated."));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await Mediator.Send(new DeleteAdCommand(id)); return Ok(ApiResult.Success("Ad deleted."));
+        }
+    }
+}
+
+// --- Source: Areas\Admin\AuthController.cs ---
+namespace Cessa.Api.Controllers.Areas.Admin
+{
+    using Cessa.Api.Controllers.Areas.Student;
+    using Cessa.Api.Helpers;
+    using Cessa.Application.Features.Auth;
+    using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Threading.Tasks;
+
+    public record AdminRegisterRequest(string FirstName, string LastName, string Email, string Password);
+    public record LoginRequest(string Email, string Password);
+    public record OtpRequest(string Email, string Code);
+    public record RefreshRequest(string? AccessToken, string? RefreshToken);
+    public record ForgotPasswordRequest(string Email);
+    public record ResetPasswordRequest(string Email, string Token, string NewPassword);
+
+    [Route("api/admin/[controller]")]
+    [ApiExplorerSettings(GroupName = "admin")]
+    public class AuthController : ApiControllerBase
+    {
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] AdminRegisterRequest request)
+        {
+            var command = new RegisterCommand(request.FirstName, request.LastName, request.Email, request.Password, "Admin");
+            var message = await Mediator.Send(command);
+            return StatusCode(StatusCodes.Status201Created, ApiResult.Created(message));
+        }
+
+        [HttpPost("verify-email")]
+        public async Task<IActionResult> VerifyEmail([FromQuery] Guid userId, [FromQuery] string token)
+        {
+            await Mediator.Send(new VerifyEmailCommand(userId, token));
+            return Ok(ApiResult.Success("Email verified successfully. You can now login."));
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        {
+            // Enforce Admin Role
+            var command = new LoginWithPasswordCommand(request.Email, request.Password, "Admin");
+            var result = await Mediator.Send(command);
+            SetTokenCookies(result.AccessToken, result.RefreshToken);
+            return Ok(ApiResult.Success(result, "Admin logged in successfully."));
+        }
+
+        [HttpPost("verify-otp")]
+        public async Task<IActionResult> VerifyOtp([FromBody] OtpRequest request)
+        {
+            // Enforce Admin Role
+            var command = new LoginWithOtpCommand(request.Email, request.Code, "Admin");
+            var result = await Mediator.Send(command);
+            SetTokenCookies(result.AccessToken, result.RefreshToken);
+            return Ok(ApiResult.Success(result, "OTP verified successfully."));
+        }
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh([FromBody] RefreshRequest? request)
+        {
+            var accessToken = request?.AccessToken ?? Request.Cookies["jwt"];
+            var refreshToken = request?.RefreshToken ?? Request.Cookies["refreshToken"];
+
+            if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken))
+                return Unauthorized(ApiResult.Unauthorized("Tokens are missing"));
+
+            var result = await Mediator.Send(new RefreshTokenCommand(accessToken, refreshToken));
+            SetTokenCookies(result.AccessToken, result.RefreshToken);
+
+            return Ok(ApiResult.Success(result, "Tokens refreshed successfully."));
+        }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            if (!string.IsNullOrEmpty(refreshToken))
+            {
+                await Mediator.Send(new LogoutCommand(refreshToken));
+            }
+            ClearTokenCookies();
+            return Ok(ApiResult.Success("Logged out successfully."));
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            await Mediator.Send(new ForgotPasswordCommand(request.Email));
+            return Ok(ApiResult.Success("If your email is registered and confirmed, a reset link has been sent to your email."));
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            await Mediator.Send(new ResetPasswordCommand(request.Email, request.Token, request.NewPassword));
+            return Ok(ApiResult.Success("Your password has been reset successfully. You can now log in."));
+        }
+    }
+}
+
+// --- Source: Areas\Admin\EventController.cs ---
+namespace Cessa.Api.Controllers.Areas.Admin
+{
+    using Cessa.Api.Helpers;
+    using Cessa.Application.Features.Admin.Events;
+    using Cessa.Application.Features.Events;
+    using Cessa.Application.Features.Student.Enrollments; // Added
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Admin")]
+    [Route("api/admin/[controller]")]
+    [ApiExplorerSettings(GroupName = "admin")]
+    public class EventsController : ApiControllerBase
+    {
+        public async Task<IActionResult> GetEvents()
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Guid? userId = string.IsNullOrEmpty(userIdString) ? null : Guid.Parse(userIdString);
+
+            var result = await Mediator.Send(new GetEventsQuery(userId));
+            return Ok(ApiResult.Success(result, "Events retrieved successfully."));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateEvent([FromBody] CreateEventCommand command)
+        {
+            var result = await Mediator.Send(command);
+            return StatusCode(StatusCodes.Status201Created, ApiResult.Created(result, "Event created successfully."));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateEvent(Guid id, [FromBody] UpdateEventCommand command)
+        {
+            if (id != command.Id) return BadRequest(ApiResult.BadRequest("ID mismatch in route and body."));
+            await Mediator.Send(command);
+            return Ok(ApiResult.Success("Event updated successfully."));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEvent(Guid id)
+        {
+            await Mediator.Send(new DeleteEventCommand(id));
+            return Ok(ApiResult.Success("Event deleted successfully."));
+        }
+
+        [HttpPost("enroll")]
+        public async Task<IActionResult> Enroll([FromBody] EnrollInEventCommand command)
+        {
+            await Mediator.Send(command);
+            return Ok(ApiResult.Success("Enrolled successfully."));
+        }
+
+        [HttpGet("{eventId}/enrollments")]
+        public async Task<IActionResult> GetEnrollments(Guid eventId)
+        {
+            var creatorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new Cessa.Application.Features.Events.GetEventEnrollmentsQuery(eventId, creatorId, IsAdmin: false));
+            return Ok(ApiResult.Success(result, "Enrollments retrieved successfully."));
+        }
+
+        [HttpPatch("{eventId}/enrollments/{enrollmentId}/status")]
+        public async Task<IActionResult> UpdateEnrollmentStatus(Guid eventId, Guid enrollmentId, [FromBody] Cessa.Application.Features.Events.UpdateStatusRequest request)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            bool isAdmin = User.IsInRole("Admin");
+            await Mediator.Send(new Cessa.Application.Features.Events.UpdateEnrollmentStatusCommand(eventId, enrollmentId, request.Status, userId, isAdmin));
+            return Ok(ApiResult.Success("Enrollment status updated."));
+        }
+
+        [HttpGet("me")]
+        public async Task<IActionResult> GetMe()
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var profile = await Mediator.Send(new Cessa.Application.Features.Student.Profile.GetMyProfileQuery(userId));
+            return Ok(ApiResult.Success(profile, "Profile retrieved"));
+        }
+
+
+    }
+}
+
+// --- Source: Areas\Admin\HallOfFameController.cs ---
+﻿namespace Cessa.Api.Controllers.Areas.Admin
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Admin.HallOfFame;
+    using Cessa.Application.Features.HallOfFame;
+    using Cessa.Api.Helpers;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Admin")]
+    [Route("api/admin/[controller]")]
+    [ApiExplorerSettings(GroupName = "admin")]
+    public class HallOfFameController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await Mediator.Send(new GetHallOfFameQuery());
+            return Ok(ApiResult.Success(result, "Retrieved successfully."));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] AddHallOfFameMemberCommand command)
+        {
+            var id = await Mediator.Send(command);
+            return StatusCode(StatusCodes.Status201Created, ApiResult.Created(id, "Added successfully."));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await Mediator.Send(new Cessa.Application.Features.Admin.HallOfFame.DeleteHallOfFameMemberCommand(id));
+            return Ok(ApiResult.Success("Member deleted successfully."));
+        }
+
+    }
+}
+
+// --- Source: Areas\Admin\LogsController.cs ---
+namespace Cessa.Api.Controllers.Areas.Admin
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Admin.Logs;
+    using Cessa.Api.Helpers;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Admin")]
+    [Route("api/admin/[controller]")]
+    [ApiExplorerSettings(GroupName = "admin")]
+    public class LogsController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetSystemLogs()
+        {
+            var logs = await Mediator.Send(new GetSystemLogsQuery());
+            return Ok(ApiResult.Success(logs, "System logs retrieved successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\Admin\PaymentController.cs ---
+﻿namespace Cessa.Api.Controllers.Areas.Admin
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Student.Payments;
+    using Cessa.Api.Helpers;
+    using System;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Admin")]
+    [Route("api/admin/[controller]")]
+    [ApiExplorerSettings(GroupName = "admin")]
+    public class PaymentController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetMyPayments()
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new GetMyPaymentsQuery(userId));
+            return Ok(ApiResult.Success(result, "Payments retrieved successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\Admin\PostController.cs ---
+﻿namespace Cessa.Api.Controllers.Areas.Admin
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Posts;
+    using Cessa.Api.Helpers;
+    using System;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    // ADDED: Aliases to resolve the ambiguous references between Admin and global Post commands
+    using AdminCreatePostCommand = Cessa.Application.Features.Admin.Posts.CreatePostCommand;
+    using AdminUpdatePostCommand = Cessa.Application.Features.Admin.Posts.UpdatePostCommand;
+    using AdminDeletePostCommand = Cessa.Application.Features.Admin.Posts.DeletePostCommand;
+
+    public record AddCommentRequest(string Text, Guid? ParentCommentId);
+
+    [Authorize(Roles = "Admin")]
+    [Route("api/admin/[controller]")]
+    [ApiExplorerSettings(GroupName = "admin")]
+    public class PostController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetRecentPosts()
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new GetRecentPostsQuery(userId));
+            return Ok(ApiResult.Success(result, "Recent posts retrieved successfully."));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPostById(Guid id)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new GetPostByIdQuery(id, userId));
+            return Ok(ApiResult.Success(result, "Post retrieved successfully."));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePost([FromBody] AdminCreatePostCommand command)
+        {
+            var authorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var newCommand = command with { AuthorId = authorId };
+            var result = await Mediator.Send(newCommand);
+            return StatusCode(StatusCodes.Status201Created, ApiResult.Created(result, "Post created successfully."));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePost(Guid id, [FromBody] AdminUpdatePostCommand command)
+        {
+            if (id != command.Id) return BadRequest(ApiResult.BadRequest("ID mismatch in route and body."));
+            await Mediator.Send(command);
+            return Ok(ApiResult.Success("Post updated successfully."));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePost(Guid id)
+        {
+            await Mediator.Send(new AdminDeletePostCommand(id));
+            return Ok(ApiResult.Success("Post deleted successfully."));
+        }
+
+        [HttpPost("{id}/like")]
+        public async Task<IActionResult> ToggleLike(Guid id)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new ToggleLikeCommand(id, userId));
+            return Ok(ApiResult.Success("Like toggled successfully."));
+        }
+
+        [HttpPost("{id}/comment")]
+        public async Task<IActionResult> AddComment(Guid id, [FromBody] AddCommentRequest request)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new AddCommentCommand(id, userId, request.Text, request.ParentCommentId));
+            return Ok(ApiResult.Success("Comment added successfully."));
+        }
+
+        [HttpDelete("{id}/comment/{commentId}")]
+        public async Task<IActionResult> DeleteComment(Guid id, Guid commentId)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new DeleteCommentCommand(id, commentId, userId, "Admin"));
+            return Ok(ApiResult.Success("Comment deleted successfully."));
+        }
+
+        [AllowAnonymous]
+        [HttpGet("{id}/comments")]
+        public async Task<IActionResult> GetComments(Guid id)
+        {
+            var result = await Mediator.Send(new GetPostCommentsQuery(id));
+            return Ok(ApiResult.Success(result, "Comments retrieved successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\Admin\ProfileController.cs ---
+﻿namespace Cessa.Api.Controllers.Areas.Admin
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Student.Profile;
+    using Cessa.Api.Helpers;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Admin")]
+    [Route("api/admin/[controller]")]
+    [ApiExplorerSettings(GroupName = "admin")]
+    public class ProfileController : ApiControllerBase
+    {
+        [HttpPut]
+        public async Task<IActionResult> UpdateProfile([FromBody] ProfileCommands command)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId != command.UserId.ToString()) return StatusCode(StatusCodes.Status403Forbidden, ApiResult.Forbidden("You can only modify your own profile."));
+
+            await Mediator.Send(command);
+            return Ok(ApiResult.Success("Profile updated successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\Admin\UsersController.cs ---
+namespace Cessa.Api.Controllers.Areas.Admin
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Admin.Users;
+    using Cessa.Application.Features.Users;
+    using Cessa.Api.Helpers;
+    using System;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Admin")]
+    [Route("api/admin/[controller]")]
+    [ApiExplorerSettings(GroupName = "admin")]
+    public class UsersController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers([FromQuery] string? searchTerm, [FromQuery] int? entryYear)
+        {
+            var users = await Mediator.Send(new GetUsersQuery(searchTerm, entryYear));
+            return Ok(ApiResult.Success(users, "Users retrieved successfully."));
+        }
+
+        [HttpGet("explore")]
+        public async Task<IActionResult> ExploreUsers([FromQuery] string? searchTerm, [FromQuery] int? entryYear)
+        {
+            var users = await Mediator.Send(new GetUsersQuery(searchTerm, entryYear));
+            return Ok(ApiResult.Success(users, "Users retrieved successfully."));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveUser(Guid id)
+        {
+            await Mediator.Send(new RemoveUserCommand(id));
+            return Ok(ApiResult.Success("User removed successfully."));
+        }
+
+        [HttpPost("{id}/bypass-password")]
+        public async Task<IActionResult> BypassPassword(Guid id, [FromBody] string newPassword)
+        {
+            var result = await Mediator.Send(new BypassUserPasswordCommand(id, newPassword));
+            return result
+                ? Ok(ApiResult.Success("Password bypassed successfully."))
+                : BadRequest(ApiResult.BadRequest("Failed to reset password."));
+        }
+
+        [HttpPost("{id}/verify-creator")]
+        public async Task<IActionResult> VerifyCreator(Guid id)
+        {
+            await Mediator.Send(new VerifyContentCreatorCommand(id));
+            return Ok(ApiResult.Success("Content Creator verified successfully."));
+        }
+
+    }
+}
+
+// --- Source: Areas\ContentCreator\AuthController.cs ---
+namespace Cessa.Api.Controllers.Areas.ContentCreator
+{
+    using Cessa.Api.Controllers.Areas.Student; // For shared requests if needed
+    using Cessa.Api.Helpers;
+    using Cessa.Application.Features.Auth;
+    using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Threading.Tasks;
+
+    public record CreatorRegisterRequest(string FirstName, string LastName, string Email, string Password);
+    public record LoginRequest(string Email, string Password);
+    public record OtpRequest(string Email, string Code);
+    public record RefreshRequest(string? AccessToken, string? RefreshToken);
+    public record ForgotPasswordRequest(string Email);
+    public record ResetPasswordRequest(string Email, string Token, string NewPassword);
+
+    [Route("api/creator/[controller]")]
+    [ApiExplorerSettings(GroupName = "contentcreator")]
+    public class AuthController : ApiControllerBase
+    {
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] CreatorRegisterRequest request)
+        {
+            var command = new RegisterCommand(request.FirstName, request.LastName, request.Email, request.Password, "ContentCreator");
+            var message = await Mediator.Send(command);
+            return StatusCode(StatusCodes.Status201Created, ApiResult.Created(message));
+        }
+
+        [HttpPost("verify-email")]
+        public async Task<IActionResult> VerifyEmail([FromQuery] Guid userId, [FromQuery] string token)
+        {
+            await Mediator.Send(new VerifyEmailCommand(userId, token));
+            return Ok(ApiResult.Success("Email verified successfully. You can now login."));
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        {
+            // Enforce Creator Role
+            var command = new LoginWithPasswordCommand(request.Email, request.Password, "ContentCreator");
+            var result = await Mediator.Send(command);
+            SetTokenCookies(result.AccessToken, result.RefreshToken);
+            return Ok(ApiResult.Success(result, "Creator logged in successfully."));
+        }
+
+        [HttpPost("verify-otp")]
+        public async Task<IActionResult> VerifyOtp([FromBody] OtpRequest request)
+        {
+            // Enforce Creator Role
+            var command = new LoginWithOtpCommand(request.Email, request.Code, "ContentCreator");
+            var result = await Mediator.Send(command);
+            SetTokenCookies(result.AccessToken, result.RefreshToken);
+            return Ok(ApiResult.Success(result, "OTP verified successfully."));
+        }
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh([FromBody] RefreshRequest? request)
+        {
+            var accessToken = request?.AccessToken ?? Request.Cookies["jwt"];
+            var refreshToken = request?.RefreshToken ?? Request.Cookies["refreshToken"];
+
+            if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken))
+                return Unauthorized(ApiResult.Unauthorized("Tokens are missing"));
+
+            var result = await Mediator.Send(new RefreshTokenCommand(accessToken, refreshToken));
+            SetTokenCookies(result.AccessToken, result.RefreshToken);
+
+            return Ok(ApiResult.Success(result, "Tokens refreshed successfully."));
+        }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            if (!string.IsNullOrEmpty(refreshToken))
+            {
+                await Mediator.Send(new LogoutCommand(refreshToken));
+            }
+            ClearTokenCookies();
+            return Ok(ApiResult.Success("Logged out successfully."));
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            await Mediator.Send(new ForgotPasswordCommand(request.Email));
+            return Ok(ApiResult.Success("If your email is registered and confirmed, a reset link has been sent to your email."));
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            await Mediator.Send(new ResetPasswordCommand(request.Email, request.Token, request.NewPassword));
+            return Ok(ApiResult.Success("Your password has been reset successfully. You can now log in."));
+        }
+    }
+}
+
+// --- Source: Areas\ContentCreator\EventController.cs ---
+namespace Cessa.Api.Controllers.Areas.ContentCreator
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.ContentCreator.Events;
+    using Cessa.Application.Features.Events;
+    using Cessa.Application.Features.Student.Enrollments; // Added
+    using Cessa.Api.Helpers;
+    using System;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "ContentCreator")]
+    [Route("api/creator/[controller]")]
+    [ApiExplorerSettings(GroupName = "contentcreator")]
+    public class EventsController : ApiControllerBase
+    {
+        public async Task<IActionResult> GetEvents()
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Guid? userId = string.IsNullOrEmpty(userIdString) ? null : Guid.Parse(userIdString);
+
+            var result = await Mediator.Send(new GetEventsQuery(userId));
+            return Ok(ApiResult.Success(result, "Events retrieved successfully."));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateEvent([FromBody] CreateEventCommand command)
+        {
+            var creatorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var newCommand = command with { CreatorId = creatorId };
+            var result = await Mediator.Send(newCommand);
+            return StatusCode(StatusCodes.Status201Created, ApiResult.Created(result, "Event created successfully."));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateEvent(Guid id, [FromBody] UpdateEventCommand command)
+        {
+            if (id != command.Id) return BadRequest(ApiResult.BadRequest("ID mismatch in route and body."));
+
+            var creatorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var newCommand = command with { CreatorId = creatorId };
+            await Mediator.Send(newCommand);
+            return Ok(ApiResult.Success("Event updated successfully."));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEvent(Guid id)
+        {
+            var creatorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new DeleteEventCommand(id, creatorId));
+            return Ok(ApiResult.Success("Event deleted successfully."));
+        }
+
+        [HttpPost("enroll")]
+        public async Task<IActionResult> Enroll([FromBody] EnrollInEventCommand command)
+        {
+            await Mediator.Send(command);
+            return Ok(ApiResult.Success("Enrolled successfully."));
+        }
+
+        [HttpGet("{eventId}/enrollments")]
+        public async Task<IActionResult> GetEnrollments(Guid eventId)
+        {
+            var creatorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new Cessa.Application.Features.Events.GetEventEnrollmentsQuery(eventId, creatorId, IsAdmin: false));
+            return Ok(ApiResult.Success(result, "Enrollments retrieved successfully."));
+        }
+
+        [HttpPatch("{eventId}/enrollments/{enrollmentId}/status")]
+        public async Task<IActionResult> UpdateEnrollmentStatus(Guid eventId, Guid enrollmentId, [FromBody] Cessa.Application.Features.Events.UpdateStatusRequest request)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            bool isAdmin = User.IsInRole("Admin");
+            await Mediator.Send(new Cessa.Application.Features.Events.UpdateEnrollmentStatusCommand(eventId, enrollmentId, request.Status, userId, isAdmin));
+            return Ok(ApiResult.Success("Enrollment status updated."));
+        }
+
+        [HttpGet("me")]
+        public async Task<IActionResult> GetMe()
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var profile = await Mediator.Send(new Cessa.Application.Features.Student.Profile.GetMyProfileQuery(userId));
+            return Ok(ApiResult.Success(profile, "Profile retrieved"));
+        }
+
+
+    }
+}
+
+// --- Source: Areas\ContentCreator\HallOfFameController.cs ---
+﻿namespace Cessa.Api.Controllers.Areas.ContentCreator
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.HallOfFame;
+    using Cessa.Api.Helpers;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "ContentCreator")]
+    [Route("api/creator/[controller]")]
+    [ApiExplorerSettings(GroupName = "contentcreator")]
+    public class HallOfFameController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await Mediator.Send(new GetHallOfFameQuery());
+            return Ok(ApiResult.Success(result, "Hall of fame retrieved successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\ContentCreator\PaymentController.cs ---
+﻿namespace Cessa.Api.Controllers.Areas.ContentCreator
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Student.Payments;
+    using Cessa.Api.Helpers;
+    using System;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "ContentCreator")]
+    [Route("api/creator/[controller]")]
+    [ApiExplorerSettings(GroupName = "contentcreator")]
+    public class PaymentController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetMyPayments()
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new GetMyPaymentsQuery(userId));
+            return Ok(ApiResult.Success(result, "Payments retrieved successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\ContentCreator\PostController.cs ---
+namespace Cessa.Api.Controllers.Areas.ContentCreator
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Posts;
+    using Cessa.Api.Helpers;
+    using System;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    public record AddCommentRequest(string Text, Guid? ParentCommentId);
+
+    [Authorize(Roles = "ContentCreator")]
+    [Route("api/creator/[controller]")]
+    [ApiExplorerSettings(GroupName = "contentcreator")]
+    public class PostController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetRecentPosts()
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new GetRecentPostsQuery(userId));
+            return Ok(ApiResult.Success(result, "Recent posts retrieved successfully."));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPostById(Guid id)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new GetPostByIdQuery(id, userId));
+            return Ok(ApiResult.Success(result, "Post retrieved successfully."));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePost([FromBody] CreatePostCommand command)
+        {
+            var authorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var newCommand = command with { AuthorId = authorId };
+            var result = await Mediator.Send(newCommand);
+            return StatusCode(StatusCodes.Status201Created, ApiResult.Created(result, "Post created successfully."));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePost(Guid id, [FromBody] UpdatePostCommand command)
+        {
+            if (id != command.Id) return BadRequest(ApiResult.BadRequest("ID mismatch in route and body."));
+
+            var authorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var newCommand = command with { AuthorId = authorId };
+            await Mediator.Send(newCommand);
+            return Ok(ApiResult.Success("Post updated successfully."));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePost(Guid id)
+        {
+            var authorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new DeletePostCommand(id, authorId));
+            return Ok(ApiResult.Success("Post deleted successfully."));
+        }
+
+        [HttpPost("{id}/like")]
+        public async Task<IActionResult> ToggleLike(Guid id)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new ToggleLikeCommand(id, userId));
+            return Ok(ApiResult.Success("Like toggled successfully."));
+        }
+
+        [HttpPost("{id}/comment")]
+        public async Task<IActionResult> AddComment(Guid id, [FromBody] AddCommentRequest request)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new AddCommentCommand(id, userId, request.Text, request.ParentCommentId));
+            return Ok(ApiResult.Success("Comment added successfully."));
+        }
+
+        [HttpDelete("{id}/comment/{commentId}")]
+        public async Task<IActionResult> DeleteComment(Guid id, Guid commentId)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new DeleteCommentCommand(id, commentId, userId, "ContentCreator"));
+            return Ok(ApiResult.Success("Comment deleted successfully."));
+        }
+
+        [AllowAnonymous]
+        [HttpGet("{id}/comments")]
+        public async Task<IActionResult> GetComments(Guid id)
+        {
+            var result = await Mediator.Send(new GetPostCommentsQuery(id));
+            return Ok(ApiResult.Success(result, "Comments retrieved successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\ContentCreator\ProfileController.cs ---
+﻿namespace Cessa.Api.Controllers.Areas.ContentCreator
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Student.Profile;
+    using Cessa.Api.Helpers;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "ContentCreator")]
+    [Route("api/creator/[controller]")]
+    [ApiExplorerSettings(GroupName = "contentcreator")]
+    public class ProfileController : ApiControllerBase
+    {
+        [HttpPut]
+        public async Task<IActionResult> UpdateProfile([FromBody] ProfileCommands command)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId != command.UserId.ToString()) return StatusCode(StatusCodes.Status403Forbidden, ApiResult.Forbidden("You can only modify your own profile."));
+
+            await Mediator.Send(command);
+            return Ok(ApiResult.Success("Profile updated successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\ContentCreator\UserController.cs ---
+﻿namespace Cessa.Api.Controllers.Areas.ContentCreator
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Users;
+    using Cessa.Api.Helpers;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "ContentCreator")]
+    [Route("api/creator/[controller]")]
+    [ApiExplorerSettings(GroupName = "contentcreator")]
+    public class UserController : ApiControllerBase
+    {
+        [HttpGet("explore")]
+        public async Task<IActionResult> ExploreUsers([FromQuery] string? searchTerm, [FromQuery] int? entryYear)
+        {
+            var users = await Mediator.Send(new GetUsersQuery(searchTerm, entryYear));
+            return Ok(ApiResult.Success(users, "Users retrieved successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\Public\FeedController.cs ---
+﻿namespace Cessa.Api.Controllers.Areas.Public
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Posts;
+    using Cessa.Application.Features.Events;
+    using Cessa.Api.Helpers;
+    using System;
+    using System.Threading.Tasks;
+
+    [AllowAnonymous]
+    [Route("api/public/[controller]")]
+    [ApiExplorerSettings(GroupName = "public")]
+    public class FeedController : ApiControllerBase
+    {
+        [HttpGet("posts")]
+        public async Task<IActionResult> GetRecentPosts() => Ok(ApiResult.Success(await Mediator.Send(new GetRecentPostsQuery(null)), "Recent posts retrieved successfully."));
+
+        [HttpGet("posts/{id}")]
+        public async Task<IActionResult> GetPostById(Guid id) => Ok(ApiResult.Success(await Mediator.Send(new GetPostByIdQuery(id, null)), "Post retrieved successfully."));
+
+        [HttpGet("events")]
+        public async Task<IActionResult> GetEvents()
+        {
+            // Pass null for public users (not logged in)
+            var result = await Mediator.Send(new GetEventsQuery(null));
+            return Ok(ApiResult.Success(result, "Events retrieved successfully."));
+        }
+
+        [HttpGet("events/{id}")]
+        public async Task<IActionResult> GetEventById(Guid id)
+        {
+            // Pass null for public users
+            var result = await Mediator.Send(new GetEventByIdQuery(id, null));
+            return Ok(ApiResult.Success(result, "Event retrieved successfully."));
+        }
+
+        [HttpGet("halloffame")]
+        public async Task<IActionResult> GetHallOfFame()
+        {
+            // Note: Update GetHallOfFameQuery logic if needed, but it works globally.
+            var result = await Mediator.Send(new Cessa.Application.Features.HallOfFame.GetHallOfFameQuery());
+            return Ok(ApiResult.Success(result, "Hall of fame retrieved successfully."));
+        }
+
+        [HttpGet("advertisements")]
+        public async Task<IActionResult> GetActiveAdvertisements() => Ok(ApiResult.Success(await Mediator.Send(new Cessa.Application.Features.Advertisements.GetActiveAdsQuery()), "Ads retrieved successfully."));
+
+    }
+}
+
+// --- Source: Areas\Student\AuthController.cs ---
+namespace Cessa.Api.Controllers.Areas.Student
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Cessa.Application.Features.Auth;
+    using Cessa.Api.Helpers;
+    using System.Threading.Tasks;
+    using System;
+
+    public record StudentRegisterRequest(string FirstName, string LastName, string Email, string Password);
+    public record LoginRequest(string Email, string Password);
+    public record OtpRequest(string Email, string Code);
+    public record RefreshRequest(string? AccessToken, string? RefreshToken);
+    public record ForgotPasswordRequest(string Email);
+    public record ResetPasswordRequest(string Email, string Token, string NewPassword);
+
+    [Route("api/student/[controller]")]
+    [ApiExplorerSettings(GroupName = "student")]
+    public class AuthController : ApiControllerBase
+    {
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] StudentRegisterRequest request)
+        {
+            var command = new RegisterCommand(request.FirstName, request.LastName, request.Email, request.Password, "Student");
+            var message = await Mediator.Send(command);
+            return StatusCode(StatusCodes.Status201Created, ApiResult.Created(message));
+        }
+
+        [HttpPost("verify-email")]
+        public async Task<IActionResult> VerifyEmail([FromQuery] Guid userId, [FromQuery] string token)
+        {
+            await Mediator.Send(new VerifyEmailCommand(userId, token));
+            return Ok(ApiResult.Success("Email verified successfully. You can now login."));
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        {
+            // Enforce Student Role
+            var command = new LoginWithPasswordCommand(request.Email, request.Password, "Student");
+            var result = await Mediator.Send(command);
+            SetTokenCookies(result.AccessToken, result.RefreshToken);
+            return Ok(ApiResult.Success(result, "Student logged in successfully."));
+        }
+
+        [HttpPost("verify-otp")]
+        public async Task<IActionResult> VerifyOtp([FromBody] OtpRequest request)
+        {
+            // Enforce Student Role
+            var command = new LoginWithOtpCommand(request.Email, request.Code, "Student");
+            var result = await Mediator.Send(command);
+            SetTokenCookies(result.AccessToken, result.RefreshToken);
+            return Ok(ApiResult.Success(result, "OTP verified successfully."));
+        }
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh([FromBody] RefreshRequest? request)
+        {
+            var accessToken = request?.AccessToken ?? Request.Cookies["jwt"];
+            var refreshToken = request?.RefreshToken ?? Request.Cookies["refreshToken"];
+
+            if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken))
+                return Unauthorized(ApiResult.Unauthorized("Tokens are missing"));
+
+            var result = await Mediator.Send(new RefreshTokenCommand(accessToken, refreshToken));
+            SetTokenCookies(result.AccessToken, result.RefreshToken);
+
+            return Ok(ApiResult.Success(result, "Tokens refreshed successfully."));
+        }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            if (!string.IsNullOrEmpty(refreshToken))
+            {
+                await Mediator.Send(new LogoutCommand(refreshToken));
+            }
+            ClearTokenCookies();
+            return Ok(ApiResult.Success("Logged out successfully."));
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            await Mediator.Send(new ForgotPasswordCommand(request.Email));
+            return Ok(ApiResult.Success("If your email is registered and confirmed, a reset link has been sent to your email."));
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            await Mediator.Send(new ResetPasswordCommand(request.Email, request.Token, request.NewPassword));
+            return Ok(ApiResult.Success("Your password has been reset successfully. You can now log in."));
+        }
+    }
+}
+
+// --- Source: Areas\Student\EventController.cs ---
+namespace Cessa.Api.Controllers.Areas.Student
+{
+    using Cessa.Api.Helpers;
+    using Cessa.Application.Features.Events;
+    using Cessa.Application.Features.Student.Enrollments;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Student")]
+    [Route("api/student/[controller]")]
+    [ApiExplorerSettings(GroupName = "student")]
+    public class EventsController : ApiControllerBase
+    {
+        public async Task<IActionResult> GetEvents()
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Guid? userId = string.IsNullOrEmpty(userIdString) ? null : Guid.Parse(userIdString);
+
+            var result = await Mediator.Send(new GetEventsQuery(userId));
+            return Ok(ApiResult.Success(result, "Events retrieved successfully."));
+        }
+
+        [HttpPost("enroll")]
+        public async Task<IActionResult> Enroll([FromBody] EnrollInEventCommand command)
+        {
+            await Mediator.Send(command);
+            return Ok(ApiResult.Success("Enrolled successfully."));
+        }
+
+        [HttpGet("{eventId}/enrollments")]
+        public async Task<IActionResult> GetEnrollments(Guid eventId)
+        {
+            var creatorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new Cessa.Application.Features.Events.GetEventEnrollmentsQuery(eventId, creatorId, IsAdmin: false));
+            return Ok(ApiResult.Success(result, "Enrollments retrieved successfully."));
+        }
+
+        [HttpPatch("{eventId}/enrollments/{enrollmentId}/status")]
+        public async Task<IActionResult> UpdateEnrollmentStatus(Guid eventId, Guid enrollmentId, [FromBody] Cessa.Domain.Enums.EnrollmentStatus status)
+        {
+            var creatorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new Cessa.Application.Features.Events.UpdateEnrollmentStatusCommand(eventId, enrollmentId, status, creatorId, IsAdmin: false));
+            return Ok(ApiResult.Success("Enrollment status updated."));
+        }
+
+        [HttpGet("me")]
+        public async Task<IActionResult> GetMe()
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var profile = await Mediator.Send(new Cessa.Application.Features.Student.Profile.GetMyProfileQuery(userId));
+            return Ok(ApiResult.Success(profile, "Profile retrieved"));
+        }
+
+
+    }
+}
+
+// --- Source: Areas\Student\HallOfFameController.cs ---
+﻿namespace Cessa.Api.Controllers.Areas.Student
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.HallOfFame;
+    using Cessa.Api.Helpers;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Student")]
+    [Route("api/student/[controller]")]
+    [ApiExplorerSettings(GroupName = "student")]
+    public class HallOfFameController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await Mediator.Send(new GetHallOfFameQuery());
+            return Ok(ApiResult.Success(result, "Retrieved successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\Student\PaymentController.cs ---
+namespace Cessa.Api.Controllers.Areas.Student
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Student.Payments;
+    using Cessa.Api.Helpers;
+    using System;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Student")]
+    [Route("api/student/[controller]")]
+    [ApiExplorerSettings(GroupName = "student")]
+    public class PaymentController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetMyPayments()
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new GetMyPaymentsQuery(userId));
+            return Ok(ApiResult.Success(result, "Payments retrieved successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\Student\PostController.cs ---
+namespace Cessa.Api.Controllers.Areas.Student
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Posts;
+    using Cessa.Api.Helpers;
+    using System;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    public record AddCommentRequest(string Text, Guid? ParentCommentId);
+
+    [Authorize(Roles = "Student")]
+    [Route("api/student/[controller]")]
+    [ApiExplorerSettings(GroupName = "student")]
+    public class PostController : ApiControllerBase
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetRecentPosts()
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new GetRecentPostsQuery(userId));
+            return Ok(ApiResult.Success(result, "Recent posts retrieved successfully."));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPostById(Guid id)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await Mediator.Send(new GetPostByIdQuery(id, userId));
+            return Ok(ApiResult.Success(result, "Post retrieved successfully."));
+        }
+
+        [HttpPost("{id}/like")]
+        public async Task<IActionResult> ToggleLike(Guid id)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new ToggleLikeCommand(id, userId));
+            return Ok(ApiResult.Success("Like toggled successfully."));
+        }
+
+        [HttpPost("{id}/comment")]
+        public async Task<IActionResult> AddComment(Guid id, [FromBody] AddCommentRequest request)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new AddCommentCommand(id, userId, request.Text, request.ParentCommentId));
+            return Ok(ApiResult.Success("Comment added successfully."));
+        }
+
+        [HttpDelete("{id}/comment/{commentId}")]
+        public async Task<IActionResult> DeleteComment(Guid id, Guid commentId)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            await Mediator.Send(new DeleteCommentCommand(id, commentId, userId, "Student"));
+            return Ok(ApiResult.Success("Comment deleted successfully."));
+        }
+
+        [AllowAnonymous]
+        [HttpGet("{id}/comments")]
+        public async Task<IActionResult> GetComments(Guid id)
+        {
+            var result = await Mediator.Send(new GetPostCommentsQuery(id));
+            return Ok(ApiResult.Success(result, "Comments retrieved successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\Student\ProfileController.cs ---
+namespace Cessa.Api.Controllers.Areas.Student
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Student.Profile;
+    using Cessa.Api.Helpers;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Student")]
+    [Route("api/student/[controller]")]
+    [ApiExplorerSettings(GroupName = "student")]
+    public class ProfileController : ApiControllerBase
+    {
+        [HttpPut]
+        public async Task<IActionResult> UpdateProfile([FromBody] ProfileCommands command)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId != command.UserId.ToString()) return StatusCode(StatusCodes.Status403Forbidden, ApiResult.Forbidden("You can only modify your own profile."));
+
+            await Mediator.Send(command);
+            return Ok(ApiResult.Success("Profile updated successfully."));
+        }
+    }
+}
+
+// --- Source: Areas\Student\UserController.cs ---
+namespace Cessa.Api.Controllers.Areas.Student
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Cessa.Application.Features.Users;
+    using Cessa.Api.Helpers;
+    using System.Threading.Tasks;
+
+    [Authorize(Roles = "Student")]
+    [Route("api/student/[controller]")]
+    [ApiExplorerSettings(GroupName = "student")]
+    public class UserController : ApiControllerBase
+    {
+        [HttpGet("explore")]
+        public async Task<IActionResult> ExploreUsers([FromQuery] string? searchTerm, [FromQuery] int? entryYear)
+        {
+            var users = await Mediator.Send(new GetUsersQuery(searchTerm, entryYear));
+            return Ok(ApiResult.Success(users, "Users retrieved successfully."));
+        }
+    }
+}
+
+// --- Source: Shared\FilesController.cs ---
+﻿namespace Cessa.Api.Controllers.Shared
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
+    using Cessa.Application.Features.Files;
+    using Cessa.Api.Helpers;
+    using System;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    [Authorize]
+    [Route("api/[controller]")]
+    public class FilesController : ApiControllerBase
+    {
+        [HttpPost("upload")]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            if (file == null || file.Length == 0) return BadRequest(ApiResult.BadRequest("File is missing."));
+
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            using var stream = file.OpenReadStream();
+
+            var command = new UploadFileCommand(stream, file.FileName, file.ContentType, userId);
+            var fileId = await Mediator.Send(command);
+
+            return Ok(ApiResult.Success(fileId, "File uploaded successfully."));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var role = User.FindFirstValue(ClaimTypes.Role) ?? "";
+
+            await Mediator.Send(new Cessa.Application.Features.Files.DeleteFileCommand(id, userId, role));
+            return Ok(ApiResult.Success("File deleted successfully."));
+        }
+    }
+}
+
